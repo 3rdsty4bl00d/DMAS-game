@@ -26,7 +26,7 @@
                             @leave-cancelled="leaveCancelled"
                             appear
                         >
-                        <div v-if="load">+</div>
+                        <div>+</div>
                         </transition>
                     Addition
             </button>
@@ -88,11 +88,6 @@
 
 <script>
 export default {
-    data() {
-        return {
-            load: true
-        }
-    },
     methods: {
         navigateToHome() {
             this.$router.push({ name: 'home' });

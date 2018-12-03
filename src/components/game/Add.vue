@@ -10,10 +10,13 @@
                         <input type="number" v-model="answerInput" placeholder="Insert Your Answer" class="text-center">
                     </div>
                     <div>
-                        {{ count }} / 10
+                        {{ answerInput }} / {{ answerAdd }}
                     </div>
                     <div>
-                        <button class="btn btn-next" @click.prevent="navigateToSelf">Next</button>
+                        {{ count }} / {{ countTotal }}
+                    </div>
+                    <div>
+                        <button class="btn btn-next" @click="navigateToSelfAndCalculate">Next</button>
                     </div>
                 </div>
             </div>
@@ -30,21 +33,52 @@ export default {
             rndTerm2: null,
             answer: null,
             answerInput: null,
-            count: 0
+            count: 0,
+            countTotal: 0
         }
     },
     methods: {
         navigateToHome() {
+
+            /* 
+                the below code,
+                will redirect to gamehome page
+                once we click on quit button
+            */
+
             this.$router.push({ name: 'gamehome' });
         },
-        navigateToSelf() {
-            console.log('render');
-            this.$router.go({ name: 'addition' });  //re-directs to same page
+        navigateToSelfAndCalculate() {
+
+            /* 
+                the below code,
+                will redirect the page to self
+                once we click the next buttton
+            */
+
+            if(this.answerInput == null) {
+                alert('Insert Your Answer!!!');
+            } else {
+                if(this.answerInput == this.answerAdd) {
+                    var counter = this.count++;
+                    this.countTotal++;
+                    this.$router.go();  //re-direct to same page
+                }else {
+                    this.$router.go();
+                    this.countTotal++;
+                }
+                
+            }
         }
     },
     computed: {
+
+        /* 
+            generating random value in computed property
+        */
+
         term1() {
-            this.rndTerm1 = Math.ceil(Math.random() * 10);
+            this.rndTerm1 = Math.ceil(Math.random() * 17);
             return this.rndTerm1;
         },
         term2() {
