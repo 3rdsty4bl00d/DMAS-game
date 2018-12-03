@@ -82,7 +82,15 @@
                 Division
             </button>
         </div>
-        <button class="btn btn-back-home" @click="navigateToHome">Go Home</button>
+        <transition
+            @before-enter="buttonBeforeEnter"
+            @enter="buttonEnter" 
+
+            @leave="buttonLeave"
+            appear
+        >
+            <button class="btn btn-back-home" @click="navigateToHome">Go Home</button>
+        </transition>
     </div>
 </template>
 
@@ -136,7 +144,6 @@ export default {
             console.log('before leave');
         },
         leave(el, done) {
-            console.log('leave');
             done();
         },
         afterLeave(el) {
@@ -176,6 +183,20 @@ export default {
             }, {
                 duration: 400
             });
+        },
+        /* buttonBeforeEnter(el) {
+            Velocity(el, {
+                opacity: 0
+            });
+        }, */
+        buttonEnter(el, done) {
+            Velocity(el, {
+                
+                translateX: "-800px"
+            }, {
+                duration: 50
+            });
+            done();
         }
     }
 }
@@ -269,6 +290,7 @@ export default {
     outline: 0;
     transition: all 1s ease;
     font-size: 25px;
+    margin-left: 50%;
 }
 
 </style>

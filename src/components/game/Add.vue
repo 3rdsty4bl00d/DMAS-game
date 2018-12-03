@@ -16,7 +16,8 @@
                         {{ count }} / {{ countTotal }}
                     </div>
                     <div>
-                        <button class="btn btn-next" @click="navigateToSelfAndCalculate">Next</button>
+                        <button class="btn btn-next" @click.prevent="navigateToSelfAndCalculate">Next</button>
+                        <button class="btn btn-next" @click="navigateToResult">Submit</button>
                     </div>
                 </div>
             </div>
@@ -48,6 +49,9 @@ export default {
 
             this.$router.push({ name: 'gamehome' });
         },
+        navigateToResult() {
+            this.$router.push({ name: 'result' });
+        },
         navigateToSelfAndCalculate() {
 
             /* 
@@ -60,7 +64,8 @@ export default {
                 alert('Insert Your Answer!!!');
             } else {
                 if(this.answerInput == this.answerAdd) {
-                    var counter = this.count++;
+                    this.count++;
+                    console.log(this.count);
                     this.countTotal++;
                     this.$router.go();  //re-direct to same page
                 }else {

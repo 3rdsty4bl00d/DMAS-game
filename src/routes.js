@@ -8,6 +8,7 @@ import Addition from './components/game/Add.vue';
 import Subtraction from './components/game/Sub.vue';
 import Multiplication from './components/game/Mul.vue';
 import Division from './components/game/Div.vue';
+import Result from './components/game/Result.vue';
 
 export const routes = [
     { path: '/signup', component: SignUp, name: 'signup' },
@@ -18,5 +19,6 @@ export const routes = [
     { path: '/addition', component: Addition, name: 'addition' },
     { path: '/subtraction', component: Subtraction, name: 'subtraction' },
     { path: '/multiplication', component: Multiplication, name: 'multiplication' },
-    { path: '/division', component: Division, name: 'division' }
+    { path: '/division', component: Division, name: 'division' },
+    { path: 'result', component: Result, name: 'result' }
 ]
