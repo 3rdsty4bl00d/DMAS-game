@@ -1,8 +1,17 @@
 <template>
     <div id="game-home">
-        <div class="row game-provide-heading">
-            <h1>Games we Provide</h1>
-        </div>
+            <div class="row game-provide-heading">
+                <transition 
+                    @before-enter="beforeEnter" 
+                    @enter="headingEnter" 
+
+                    @before-leave="beforeLeave" 
+                    @leave="headingLeave"
+                    appear
+                >
+                    <h1>Games we Provide</h1>
+                </transition>
+            </div>
         <div class="row game-button">
             <button class="btn btn-game-add" @click="navigateToAdd">
                         <transition 
@@ -140,6 +149,38 @@ export default {
         },
         leaveCancelled(el) {
             console.log('leave cancelled');
+        },
+        headingEnter(el) {
+            Velocity(el, {
+                translateY: '-20px'
+            }, {
+                duration: 200
+            });
+            Velocity(el, {
+                translateY: '20px'
+            }, {
+                duration: 200
+            });
+            Velocity(el, {
+                translateY: '-10px'
+            }, {
+                duration: 300
+            });
+            Velocity(el, {
+                translateY: '10px'
+            }, {
+                duration: 300
+            });
+            Velocity(el, {
+                translateY: '-5px'
+            }, {
+                duration: 400
+            });
+            Velocity(el, {
+                translateY: '5px'
+            }, {
+                duration: 400
+            });
         }
     }
 }
