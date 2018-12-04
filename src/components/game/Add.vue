@@ -7,7 +7,7 @@
                 </div>
                 <div class="panel-body">
                     <div>
-                        <input type="number" v-model="answerInput" placeholder="Insert Your Answer" class="text-center">
+                        <input type="number" v-model="answerInput" placeholder="Insert Your Answer" class="text-center form-control">
                     </div>
                     <div>
                         {{ answerInput }} / {{ answerAdd }}
@@ -16,7 +16,7 @@
                         {{ count }} / {{ countTotal }}
                     </div>
                     <div>
-                        <button class="btn btn-next" @click.prevent="navigateToSelfAndCalculate">Next</button>
+                        <button class="btn btn-next" @click="navigateToSelfAndCalculate()">Next</button>
                         <button class="btn btn-next" @click="navigateToResult">Submit</button>
                     </div>
                 </div>
@@ -59,8 +59,8 @@ export default {
                 will redirect the page to self
                 once we click the next buttton
             */
-
-            if(this.answerInput == null) {
+           
+            /* if(this.answerInput == null) {
                 alert('Insert Your Answer!!!');
             } else {
                 if(this.answerInput == this.answerAdd) {
@@ -73,27 +73,43 @@ export default {
                     this.countTotal++;
                 }
                 
+            } */
+            if(this.answerInput == null) {
+                alert('Insert Your Answer!!!');
+            } else {
+                if(this.answerInput == this.answerAdd) {
+                    this.count++;
+                    this.countTotal++;
+                    this.rndTerm1 = Math.ceil(Math.random() * 13);
+                    this.rndTerm2 = Math.ceil(Mathm.random() * 12);
+                } else {
+                    this.countTotal++;
+                    this.rndTerm1 = Math.ceil(Math.random() * 14);
+                    this.rndTerm2 = Math.ceil(Mathm.random() * 19);
+                }
             }
         }
+        
     },
     computed: {
-
         /* 
             generating random value in computed property
         */
-
-        term1() {
+        
+       term1() {
             this.rndTerm1 = Math.ceil(Math.random() * 17);
             return this.rndTerm1;
         },
         term2() {
-            this.rndTerm2 = Math.ceil(Math.random() * 15);
+            this.rndTerm2 = Math.ceil(Math.random() * 23);
             return this.rndTerm2;
         },
         answerAdd() {
             this.answer = (this.rndTerm1 + this.rndTerm2);
             return this.answer;
         }
+
+        
     }
 }
 </script>
