@@ -16,7 +16,7 @@
                         {{ count }} / {{ countTotal }}
                     </div>
                     <div>
-                        <button class="btn btn-next" @click="navigateToSelfAndCalculate()">Next</button>
+                        <button class="btn btn-next" @click="navigateToSelfAndCalculate">Next</button>
                         <button class="btn btn-next" @click="navigateToResult">Submit</button>
                     </div>
                 </div>
@@ -88,6 +88,7 @@ export default {
                     this.rndTerm2 = Math.ceil(Mathm.random() * 19);
                 }
             }
+            this.answerInput = null;
         }
         
     },
