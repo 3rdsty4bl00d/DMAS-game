@@ -2,11 +2,7 @@
     <div id="game-home">
             <div class="row game-provide-heading">
                 <transition 
-                    @before-enter="beforeEnter" 
                     @enter="headingEnter" 
-
-                    @before-leave="beforeLeave" 
-                    @leave="headingLeave"
                     appear
                 >
                     <h1>Games we Provide</h1>
@@ -15,15 +11,7 @@
         <div class="row game-button">
             <button class="btn btn-game-add" @click="navigateToAdd">
                         <transition 
-                            @before-enter="beforeEnter" 
                             @enter="enter" 
-                            @after-enter="afterEnter" 
-                            @enter-cancelled="enterCancelled" 
-
-                            @before-leave="beforeLeave" 
-                            @leave="leave" 
-                            @after-leave="afterLeave" 
-                            @leave-cancelled="leaveCancelled"
                             appear
                         >
                         <div>+</div>
@@ -32,15 +20,7 @@
             </button>
             <button class="btn btn-game-sub" @click="navigateToSub">
                 <transition 
-                    @before-enter="beforeEnter" 
                     @enter="enter" 
-                    @after-enter="afterEnter" 
-                    @enter-cancelled="enterCancelled" 
-
-                    @before-leave="beforeLeave" 
-                    @leave="leave" 
-                    @after-leave="afterLeave" 
-                    @leave-cancelled="leaveCancelled"
                     appear
                 >
                     <div>-</div>
@@ -49,15 +29,7 @@
             </button>
             <button class="btn btn-game-mul" @click="navigateToMul">
                 <transition 
-                    @before-enter="beforeEnter" 
                     @enter="enter" 
-                    @after-enter="afterEnter" 
-                    @enter-cancelled="enterCancelled" 
-
-                    @before-leave="beforeLeave" 
-                    @leave="leave" 
-                    @after-leave="afterLeave" 
-                    @leave-cancelled="leaveCancelled"
                     appear
                 >
                     <div>X</div>
@@ -66,15 +38,7 @@
             </button>
             <button class="btn btn-game-div" @click="navigateToDiv">
                 <transition 
-                    @before-enter="beforeEnter" 
                     @enter="enter" 
-                    @after-enter="afterEnter" 
-                    @enter-cancelled="enterCancelled" 
-
-                    @before-leave="beforeLeave" 
-                    @leave="leave" 
-                    @after-leave="afterLeave" 
-                    @leave-cancelled="leaveCancelled"
                     appear
                 >
                     <div>/</div>
@@ -83,10 +47,7 @@
             </button>
         </div>
         <transition
-            @before-enter="buttonBeforeEnter"
             @enter="buttonEnter" 
-
-            @leave="buttonLeave"
             appear
         >
             <button class="btn btn-back-home" @click="navigateToHome">Go Home</button>
@@ -112,90 +73,37 @@ export default {
         navigateToDiv() {
             this.$router.push({ name: 'division' });
         },
-        beforeEnter(el) {
-            console.log('before Enter');
-        },
         enter(el, done) {
             console.log('enter');
             Velocity(el, {
                 translateX: '10px'
             }, {
                 duration: 250
-            });
+            })
             Velocity(el, {
                 translateX: '-2px'
             }, {
                 duration: 500
-            });
+            })
             Velocity(el, {
-                rotateZ: "360deg"
+                rotateY: "360deg"
             }, {
                 duration: 1000
             })
             done();
         },
-        afterEnter(el) {
-            console.log('after Enter');
-        },
-        enterCancelled(el) {
-            console.log('enter cancelled');
-        },
-        beforeLeave(el) {
-            console.log('before leave');
-        },
-        leave(el, done) {
+        headingEnter(el, done) {
+            Velocity(el, 'callout.shake', {
+                duration: 1800
+            })
             done();
         },
-        afterLeave(el) {
-            console.log('after leave');
-        },
-        leaveCancelled(el) {
-            console.log('leave cancelled');
-        },
-        headingEnter(el) {
-            Velocity(el, {
-                translateY: '-20px'
-            }, {
-                duration: 200
-            });
-            Velocity(el, {
-                translateY: '20px'
-            }, {
-                duration: 200
-            });
-            Velocity(el, {
-                translateY: '-10px'
-            }, {
-                duration: 300
-            });
-            Velocity(el, {
-                translateY: '10px'
-            }, {
-                duration: 300
-            });
-            Velocity(el, {
-                translateY: '-5px'
-            }, {
-                duration: 400
-            });
-            Velocity(el, {
-                translateY: '5px'
-            }, {
-                duration: 400
-            });
-        },
-        /* buttonBeforeEnter(el) {
-            Velocity(el, {
-                opacity: 0
-            });
-        }, */
         buttonEnter(el, done) {
             Velocity(el, {
-                
-                translateX: "-800px"
+                translateX: "-800px",
             }, {
                 duration: 50
-            });
+            })
             done();
         }
     }

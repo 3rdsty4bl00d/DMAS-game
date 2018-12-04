@@ -8,7 +8,12 @@
                 </h1>
             </div>
             <div class="row home-button">
-                <button class="btn btn-get-started" @click.prevent="navigateToGameHome">Get Started</button>
+                <transition 
+                    @enter="enter" 
+                    appear
+                >
+                    <button class="btn btn-get-started" ref="rotateButton" @click.prevent="navigateToGameHome">Get Started</button>
+                </transition>
             </div>
         </div>
     </div>
@@ -19,6 +24,13 @@ export default {
     methods: {
         navigateToGameHome() {
             this.$router.push({ name: 'gamehome' });
+        },
+        enter(el, done) {
+            Velocity(this.$refs.rotateButton, {
+                rotateY: '360deg'
+            }, {
+                delay: 2000
+            })
         }
     }
 }

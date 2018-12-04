@@ -3,6 +3,8 @@ import VueRouter from 'vue-router';
 import { routes } from './routes';
 import App from './App.vue'
 
+export const eventBus = new Vue();
+
 Vue.use(VueRouter);
 
 const router = new VueRouter({

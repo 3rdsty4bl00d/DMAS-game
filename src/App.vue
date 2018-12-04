@@ -19,7 +19,15 @@
            now, this is the place where,
            we will be putting all our stuffs
           -->
-          <router-view></router-view>
+          <transition 
+            @before-enter="beforeEnter" 
+            @enter="enter" 
+            @leave="leave"
+          >
+            <keep-alive>
+              <router-view></router-view>
+            </keep-alive>
+          </transition>
        </div>
      </div>
   </div>
@@ -32,6 +40,25 @@ import Header from './components/Header.vue';
 export default {
   components: {
     appHeader: Header
+  },
+  methods: {
+    beforeEnter(el) {
+      el.style.opacity = 0;
+    },
+    enter(el, done) {
+      Velocity(el, {
+        opacity: 1
+      }, {
+        duration: 1000
+      })
+      done();
+    },
+    leave(el, done) {
+      Velocity(el, {
+        opacity: 0
+      })
+      done();
+    }
   }
 }
 </script>

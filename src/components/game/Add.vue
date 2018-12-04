@@ -10,12 +10,6 @@
                         <input type="number" v-model="answerInput" placeholder="Insert Your Answer" class="text-center form-control">
                     </div>
                     <div>
-                        {{ answerInput }} / {{ answerAdd }}
-                    </div>
-                    <div>
-                        {{ count }} / {{ countTotal }}
-                    </div>
-                    <div>
                         <button class="btn btn-next" @click="navigateToSelfAndCalculate">Next</button>
                         <button class="btn btn-next" @click="navigateToResult">Submit</button>
                     </div>
@@ -27,6 +21,9 @@
 </template>
 
 <script>
+
+import { eventBus } from '../../main';
+
 export default {
     data() {
         return {
@@ -52,14 +49,12 @@ export default {
         navigateToResult() {
             this.$router.push({ name: 'result' });
         },
-        navigateToSelfAndCalculate() {
-
+        navigateToSelfAndCalculate(event) {
             /* 
                 the below code,
                 will redirect the page to self
                 once we click the next buttton
             */
-           
             /* if(this.answerInput == null) {
                 alert('Insert Your Answer!!!');
             } else {
@@ -72,7 +67,6 @@ export default {
                     this.$router.go();
                     this.countTotal++;
                 }
-                
             } */
             if(this.answerInput == null) {
                 alert('Insert Your Answer!!!');
@@ -80,17 +74,17 @@ export default {
                 if(this.answerInput == this.answerAdd) {
                     this.count++;
                     this.countTotal++;
+                    this.count = event.target.value;
+                    eventBus.$emit('countWasChanged', this.count);
                     this.rndTerm1 = Math.ceil(Math.random() * 13);
-                    this.rndTerm2 = Math.ceil(Mathm.random() * 12);
+                    this.rndTerm2 = Math.ceil(Math.random() * 12);
                 } else {
                     this.countTotal++;
                     this.rndTerm1 = Math.ceil(Math.random() * 14);
-                    this.rndTerm2 = Math.ceil(Mathm.random() * 19);
+                    this.rndTerm2 = Math.ceil(Math.random() * 19);
                 }
             }
-            this.answerInput = null;
         }
-        
     },
     computed: {
         /* 
@@ -109,8 +103,6 @@ export default {
             this.answer = (this.rndTerm1 + this.rndTerm2);
             return this.answer;
         }
-
-        
     }
 }
 </script>

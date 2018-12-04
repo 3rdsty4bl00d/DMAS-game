@@ -6,7 +6,7 @@
                     <h1>Final Result</h1>
                 </div>
                 <div class="panel-body">
-                    <h1>You scored: {{ count }} / {{ counter }} </h1>
+                    <h1>You scored: {{ count }} / {{ countTotal }} </h1>
                 </div>
             </div>
             <div>
@@ -17,11 +17,25 @@
 </template>
 
 <script>
+
+import { eventBus } from '../../main';
+
 export default {
+    data() {
+        return {
+            count: null,
+            countTotal: null
+        }
+    },
     methods: {
         navigateToMain() {
             this.$router.push({ name: 'gamehome' });
         }
+    },
+    created() {
+        eventBus.$On('countWasChanged', (count) => {
+            this.count = count;
+        });
     }
 }
 </script>
