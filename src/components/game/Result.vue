@@ -25,8 +25,8 @@ export default {
     methods: {
         navigateToMain() {
             this.load = !this.load;
-            this.count = null;
-            this.countTotal = null;
+            this.count = 0;
+            this.countTotal = 0;
             eventBus.$emit('loadWasEdited', this.load);
             eventBus.$emit('countToNull', this.count);
             eventBus.$emit('countTotalToNull', this.countTotal);
