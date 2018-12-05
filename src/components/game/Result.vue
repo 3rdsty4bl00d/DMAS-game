@@ -25,7 +25,11 @@ export default {
     methods: {
         navigateToMain() {
             this.load = !this.load;
+            this.count = null;
+            this.countTotal = null;
             eventBus.$emit('loadWasEdited', this.load);
+            eventBus.$emit('countToNull', this.count);
+            eventBus.$emit('countTotalToNull', this.countTotal);
             this.$router.push({ name: 'gamehome' });
         }
     }

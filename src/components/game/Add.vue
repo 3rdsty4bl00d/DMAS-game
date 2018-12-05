@@ -49,6 +49,12 @@ export default {
         eventBus.$on('loadWasEdited', (loader) => {
             this.load = loader;
         });
+        eventBus.$on('countToNull', (counter) => {
+            this.count = counter;
+        });
+        eventBus.$on('countTotalToNull', (countTotaler) => {
+            this.countTotal = countTotaler;
+        });
     },
     methods: {
         navigateToHome() {
