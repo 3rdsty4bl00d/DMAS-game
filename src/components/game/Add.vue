@@ -1,6 +1,8 @@
 <template>
     <div id="add">
-        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3 text-center addition-term">
+        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3 text-center addition-term" 
+            v-if="load"
+        >
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h1> {{ term1 }} + {{ term2 }} ? </h1>
@@ -17,12 +19,16 @@
             </div>
             <button class="btn btn-back-home" @click="navigateToHome">Quit</button>
         </div>
+        <div class="result" v-else>
+            <app-result :count="count" :countTotal="countTotal"></app-result>
+        </div>
     </div>
 </template>
 
 <script>
 
 import { eventBus } from '../../main';
+import Result from './Result.vue';
 
 export default {
     data() {
@@ -31,9 +37,18 @@ export default {
             rndTerm2: null,
             answer: null,
             answerInput: null,
+            load: true,
             count: 0,
             countTotal: 0
         }
+    },
+    components: {
+        appResult: Result
+    },
+    created() {
+        eventBus.$on('loadWasEdited', (loader) => {
+            this.load = loader;
+        });
     },
     methods: {
         navigateToHome() {
@@ -47,7 +62,7 @@ export default {
             this.$router.push({ name: 'gamehome' });
         },
         navigateToResult() {
-            this.$router.push({ name: 'result' });
+            this.load = !this.load;
         },
         navigateToSelfAndCalculate(event) {
             /* 
@@ -74,8 +89,6 @@ export default {
                 if(this.answerInput == this.answerAdd) {
                     this.count++;
                     this.countTotal++;
-                    this.count = event.target.value;
-                    eventBus.$emit('countWasChanged', this.count);
                     this.rndTerm1 = Math.ceil(Math.random() * 13);
                     this.rndTerm2 = Math.ceil(Math.random() * 12);
                 } else {

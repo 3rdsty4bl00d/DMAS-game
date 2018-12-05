@@ -1,4 +1,4 @@
-import Header from './components/Header.vue';
+
 import SignUp from './components/log/SignUp.vue';
 import LogIn from './components/log/LogIn.vue';
 import Home from './components/Home.vue';
@@ -19,6 +19,5 @@ export const routes = [
     { path: '/addition', component: Addition, name: 'addition' },
     { path: '/subtraction', component: Subtraction, name: 'subtraction' },
     { path: '/multiplication', component: Multiplication, name: 'multiplication' },
-    { path: '/division', component: Division, name: 'division' },
-    { path: 'result', component: Result, name: 'result' }
+    { path: '/division', component: Division, name: 'division' }
 ]

@@ -1,5 +1,6 @@
 <template>
     <div id="game-home">
+        
             <div class="row game-provide-heading">
                 <transition 
                     @enter="headingEnter" 
@@ -56,6 +57,7 @@
 </template>
 
 <script>
+
 export default {
     methods: {
         navigateToHome() {

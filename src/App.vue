@@ -38,9 +38,9 @@
 import Header from './components/Header.vue';
 
 export default {
-  components: {
-    appHeader: Header
-  },
+    components: {
+      appHeader: Header
+    },
   methods: {
     beforeEnter(el) {
       el.style.opacity = 0;

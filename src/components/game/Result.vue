@@ -21,21 +21,13 @@
 import { eventBus } from '../../main';
 
 export default {
-    data() {
-        return {
-            count: null,
-            countTotal: null
-        }
-    },
+    props: ['load', 'count', 'countTotal'],
     methods: {
         navigateToMain() {
+            this.load = !this.load;
+            eventBus.$emit('loadWasEdited', this.load);
             this.$router.push({ name: 'gamehome' });
         }
-    },
-    created() {
-        eventBus.$On('countWasChanged', (count) => {
-            this.count = count;
-        });
     }
 }
 </script>
