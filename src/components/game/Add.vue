@@ -58,19 +58,17 @@ export default {
     },
     methods: {
         navigateToHome() {
-
             /* 
                 the below code,
                 will redirect to gamehome page
                 once we click on quit button
             */
-
             this.$router.push({ name: 'gamehome' });
         },
         navigateToResult() {
             this.load = !this.load;
         },
-        navigateToSelfAndCalculate(event) {
+        navigateToSelfAndCalculate() {
             /* 
                 the below code,
                 will redirect the page to self
@@ -109,7 +107,6 @@ export default {
         /* 
             generating random value in computed property
         */
-        
        term1() {
             this.rndTerm1 = Math.ceil(Math.random() * 17);
             return this.rndTerm1;
