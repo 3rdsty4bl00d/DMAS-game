@@ -20,7 +20,7 @@
             <button class="btn btn-back-home" @click="navigateToHome">Quit</button>
         </div>
         <div class="result" v-else>
-            <app-result :count="count" :countTotal="countTotal"></app-result>
+            <app-result :count="count" :countTotal="countTotal" :addName="addName"></app-result>
         </div>
     </div>
 </template>
@@ -39,7 +39,8 @@ export default {
             answerInput: null,
             load: true,
             count: 0,
-            countTotal: 0
+            countTotal: 0,
+            addName: ''
         }
     },
     components: {
@@ -66,6 +67,7 @@ export default {
             this.$router.push({ name: 'gamehome' });
         },
         navigateToResult() {
+            this.addName = 'addition';
             this.load = !this.load;
         },
         navigateToSelfAndCalculate() {

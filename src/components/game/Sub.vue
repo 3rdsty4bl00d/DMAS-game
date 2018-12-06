@@ -20,7 +20,7 @@
             <button class="btn btn-back-home" @click="navigateToHome">Quit</button>
         </div>
         <div class="result" v-else>
-            <app-result></app-result>
+            <app-result :subName="subName" :subCount="subCount" :subCountTotal="subCountTotal"></app-result>
         </div>
     </div>
 </template>
@@ -36,9 +36,10 @@ export default {
             rndSubNumber2: null,
             subAnswer: null,
             subAnswerInput: null,
+            subLoad: true,
             subCount: 0,
             subCountTotal: 0,
-            subLoad: true
+            subName: ''
         }
     },
     components: {
@@ -66,10 +67,11 @@ export default {
         },
         navigateToSubResult() {
             this.subLoad = !this.subLoad;
+            this.subName = 'subtraction';
         }
     },
     created() {
-        eventBus.$on('subLoadWasEditted', (subloaded) => {
+        eventBus.$on('subLoadWasEditted', (subLoaded) => {
             this.subLoad = subLoaded;
         });
     },

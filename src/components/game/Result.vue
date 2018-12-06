@@ -6,8 +6,8 @@
                     <h1>Final Result</h1>
                 </div>
                 <div class="panel-body">
-                    <h1 v-if="!this.load">Your addition score: {{ count }} / {{ countTotal }} </h1>
-                    <h1 v-else-if="this.subLoad">You subtraction score: {{ subCount }} / {{ subCountTotal }} </h1>
+                    <h1 v-if="dmasName == 'addition'">Your {{ dmasName }} score: {{ count }} / {{ countTotal }} </h1>
+                    <h1 v-else-if="dmasName == 'subtraction'">Your {{ dmasName }} score: {{ subCount }} / {{ subCountTotal }} </h1>
                 </div>
             </div>
             <div>
@@ -22,12 +22,33 @@
 import { eventBus } from '../../main';
 
 export default {
-    props: ['load', 'count', 'countTotal', 'subLoad', 'subCount', 'subCountTotal'],
+    data() {
+        return {
+            dmasName: ''
+        }
+    },
+    props: ['load', 
+            'count', 
+            'countTotal', 
+            'subLoad', 
+            'subCount', 
+            'subCountTotal',
+            'addName',
+            'subname'
+        ],
+    created() {
+        if(this.addName == 'addition') {
+            this.dmasName = this.addName;
+        } else if (this.subName == 'subtraction') {
+            this.dmasName = this.subName;
+        }
+    },
     methods: {
         navigateToMain() {
+            this.$router.push({ name: 'gamehome' });
             this.addLoader();
             this.subLoader();
-            this.$router.push({ name: 'gamehome' });
+            
         },
         addLoader() {
             this.load = !this.load;
@@ -38,7 +59,6 @@ export default {
             eventBus.$emit('countTotalToNull', this.countTotal);
         },
         subLoader() {
-            console.log('subloader was called');
             this.subLoad = !this.subLoad;
             this.subCount = 0;
             this.subCountTotal = 0;
