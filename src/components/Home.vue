@@ -1,6 +1,6 @@
 <template>
     <div id="home">
-        <img src="../img/home.jpg" alt="HomeImage" class="home-bg-img">
+        <img src="../img/home.jpg" alt="HomeImage" class="home-bg-img img-responsive">
         <div class="home-bg">
             <div class="row home-heading">
                 <h1>

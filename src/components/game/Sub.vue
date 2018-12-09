@@ -20,7 +20,7 @@
             <button class="btn btn-back-home" @click="navigateToHome">Quit</button>
         </div>
         <div class="result" v-else>
-            <app-result :subName="subName" :subCount="subCount" :subCountTotal="subCountTotal"></app-result>
+            <app-result :subName="subName" :subCount="subCount" :subCountTotal="subCountTotal" :subLoad="subLoad"></app-result>
         </div>
     </div>
 </template>
@@ -60,8 +60,8 @@ export default {
                     this.rndSubNumber2 = Math.ceil(Math.random() * 19);
                 } else {
                     this.subCountTotal++;
-                    this.rndSubNumber1 = Math.ceil(Math.random() * 39);
-                    this.rndSubNumber2 = Math.ceil(Math.random() * 49);
+                    this.rndSubNumber1 = Math.ceil((Math.random() * 39) - (Math.random() * 69));
+                    this.rndSubNumber2 = Math.ceil((Math.random() * 49) - (Math.random() * 59));
                 }
             }
         },
@@ -73,6 +73,12 @@ export default {
     created() {
         eventBus.$on('subLoadWasEditted', (subLoaded) => {
             this.subLoad = subLoaded;
+        });
+        eventBus.$on('subCountToNull', (subCountedToNull) => {
+            this.subCount = subCountedToNull;
+        });
+        eventBus.$on('subCountTotalToNull', (subCountTotalerToNull) => {
+            this.subCountTotal = subCountTotalerToNull;
         });
     },
     computed: {

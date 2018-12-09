@@ -8,6 +8,8 @@
                 <div class="panel-body">
                     <h1 v-if="dmasName == 'addition'">Your {{ dmasName }} score: {{ count }} / {{ countTotal }} </h1>
                     <h1 v-else-if="dmasName == 'subtraction'">Your {{ dmasName }} score: {{ subCount }} / {{ subCountTotal }} </h1>
+                    <h1 v-else-if="dmasName == 'multiplication'">Your {{ dmasName }} score: {{ mulCount }} / {{ mulCountTotal }} </h1>
+                    <h1 v-else-if="dmasName == 'division'">Your {{ dmasName }} score: {{ divCount }} / {{ divCountTotal }} </h1>
                 </div>
             </div>
             <div>
@@ -27,20 +29,32 @@ export default {
             dmasName: ''
         }
     },
-    props: ['load', 
-            'count', 
-            'countTotal', 
-            'subLoad', 
-            'subCount', 
+    props: ['load',
+            'count',
+            'countTotal',
+            'subLoad',
+            'subCount',
             'subCountTotal',
             'addName',
-            'subname'
+            'subName',
+            'mulLoad',
+            'mulCount',
+            'mulCountTotal',
+            'mulName',
+            'divLoad',
+            'divCount',
+            'divCountTotal',
+            'divName'
         ],
     created() {
         if(this.addName == 'addition') {
             this.dmasName = this.addName;
         } else if (this.subName == 'subtraction') {
             this.dmasName = this.subName;
+        } else if (this.mulName == 'multiplication') {
+            this.dmasName = this.mulName;
+        } else {
+            this.dmasName = this.divName;
         }
     },
     methods: {
@@ -48,7 +62,8 @@ export default {
             this.$router.push({ name: 'gamehome' });
             this.addLoader();
             this.subLoader();
-            
+            this.mulLoader();
+            this.divLoader();
         },
         addLoader() {
             this.load = !this.load;
@@ -63,6 +78,24 @@ export default {
             this.subCount = 0;
             this.subCountTotal = 0;
             eventBus.$emit('subLoadWasEditted', this.subLoad);
+            eventBus.$emit('subCountToNull', this.subCount);
+            eventBus.$emit('subCountTotalToNull', this.subCountTotal);
+        },
+        mulLoader() {
+            this.mulLoad = !this.mulLoad;
+            this.mulCount = 0;
+            this.mulCountTotal = 0;
+            eventBus.$emit('mulLoadWasEditted', this.mulLoad);
+            eventBus.$emit('mulCountToNull', this.mulCount);
+            eventBus.$emit('mulCountTotalToNull', this.mulCountTotal);
+        },
+        divLoader() {
+            this.divLoad = !this.divLoad;
+            this.divCount = 0;
+            this.divCountTotal = 0;
+            eventBus.$emit('divLoadWasEditted', this.divLoad);
+            eventBus.$emit('divCountToNull', this.divCount);
+            eventBus.$emit('divCountTotalToNull', this.divCountTotal);
         }
     }
 }

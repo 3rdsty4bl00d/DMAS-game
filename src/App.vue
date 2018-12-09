@@ -41,7 +41,7 @@ export default {
     components: {
       appHeader: Header
     },
-  methods: {
+    methods: {
     beforeEnter(el) {
       el.style.opacity = 0;
     },
@@ -49,7 +49,7 @@ export default {
       Velocity(el, {
         opacity: 1
       }, {
-        duration: 1000
+        duration: 2000
       })
       done();
     },

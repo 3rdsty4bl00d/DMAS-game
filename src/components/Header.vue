@@ -1,10 +1,10 @@
 <template>
     <nav class="navbar navbar-default navbar-fixed-top">
-        <ul class="nav nav-pills pull-right">
-            <router-link to="/" tag="li" active-class="active" exact><a class="header">Home</a></router-link>
-            <router-link to="/profile" tag="li" active-class="active"><a class="header">Profile</a></router-link>
-            <router-link to="/signup" tag="li" active-class="active"><a class="header">Sign Up</a></router-link>
-            <router-link to="/login" tag="li" active-class="active"><a class="header">Log In</a></router-link>
+        <ul class="nav nav-tabs pull-right">
+          <router-link-exact-active to="/" tag="li" active-class="active" exact><a class="header">Home</a></router-link-exact-active>
+          <router-link-exact-active to="/profile" tag="li" active-class="active"><a class="header">Profile</a></router-link-exact-active>
+          <router-link-exact-active to="/signup" tag="li" active-class="active"><a class="header">Sign Up</a></router-link-exact-active>
+          <router-link-exact-active to="/login" tag="li" active-class="active"><a class="header">Log In</a></router-link-exact-active>
         </ul>
     </nav>
 </template>

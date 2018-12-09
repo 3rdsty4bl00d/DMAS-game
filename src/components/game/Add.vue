@@ -20,7 +20,7 @@
             <button class="btn btn-back-home" @click="navigateToHome">Quit</button>
         </div>
         <div class="result" v-else>
-            <app-result :count="count" :countTotal="countTotal" :addName="addName"></app-result>
+            <app-result :count="count" :countTotal="countTotal" :addName="addName" :load="load"></app-result>
         </div>
     </div>
 </template>

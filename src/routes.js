@@ -8,7 +8,6 @@ import Addition from './components/game/Add.vue';
 import Subtraction from './components/game/Sub.vue';
 import Multiplication from './components/game/Mul.vue';
 import Division from './components/game/Div.vue';
-import Result from './components/game/Result.vue';
 
 export const routes = [
     { path: '/signup', component: SignUp, name: 'signup' },
